@@ -3,13 +3,24 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    inputs.hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, ...} @ inputs : {
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
+    nixosConfiguration.desktop = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; }; 
+      modules = [
+        ./hosts/desktop/configuration.nix
+        ./axiomosModules/hyprland.nix
+      ];
+    };
+    nixosConfiguration.laptop = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; }; 
+      modules = [
+        ./hosts/laptop/configuration.nix
+        ./axiomosModules/hyprland.nix
+      ];
+    };
   };
 }
