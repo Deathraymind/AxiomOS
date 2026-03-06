@@ -19,28 +19,27 @@ users.mutableUsers = false;
    users.users.deathraymind = {
      hashedPassword = "$y$j9T$Yu6LVySFa46PsKBHC7lkI.$fCdSJMULL1L2uOMhiY1WlR5QzW84qP42ktl2CxvSkgC";
      isNormalUser = true;
-     extraGroups = [ "wheel" ];      packages = with pkgs; [
+     extraGroups = [ "wheel" ];      
+    packages = with pkgs; [
             neovim
-     ];
+    ];
    };
-      virtualisation.vmVariant = {
-        # Enable 3D acceleration for the VM display
-        virtualisation.qemu.options = [
-          "-device" "virtio-vga-gl"
-          "-display" "sdl,gl=on,show-cursor=off"
-          # Audio passthrough
-          "-audiodev" "pipewire,id=audio0"
-          "-device" "intel-hda"
-          "-device" "hda-output,audiodev=audio0"
-        ];
+     virtualisation.vmVariant = {
+  # Taken from https://github.com/donovanglover/nix-config/commit/0bf134297b3a62da62f9ee16439d6da995d3fbff
+  # to enable Hyprland to work on a virtualized GPU.
+  virtualisation.qemu.options = [
+    "-device virtio-vga-gl"
+      "-display" "gtk,gl=on,grab-on-hover=on"
+         "-device" "usb-tablet"
+  "-device" "usb-kbd"
+     # Wire up pipewire audio
+    "-audiodev pipewire,id=audio0"
+    "-device intel-hda"
+    "-device hda-output,audiodev=audio0"
+    # to enable the vm to grab mouse
+  ];
 
-        # Crucial environment variables for VM compatibility
-        environment.sessionVariables = {
-          WLR_NO_HARDWARE_CURSORS = "1";       # Prevents invisible/broken cursor
-          WLR_RENDERER_ALLOW_SOFTWARE = "1";   # Fallback if virtio-gl fails
-        };
-      };
-      
+    }; 
  # auto login and launch hyprland
 services.greetd = {
     enable = true;
@@ -51,8 +50,8 @@ services.greetd = {
         user = "greeter";
       };
       initial_session = {
-        command = "Hyprland";
-        user = "deathermind";
+        command = "start-hyprland";
+        user = "deathraymind";
       };
     };
   };
