@@ -34,8 +34,9 @@ nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
   modules = [
     ./hosts/vm/configuration.nix
     inputs.home-manager.nixosModules.default
-    home-manager.users.deathraymind = import ./hosts/vm/home.nix;
-
+    {
+      home-manager.users.deathraymind = import ./hosts/vm/home.nix;
+    }
 
   ];
 };
