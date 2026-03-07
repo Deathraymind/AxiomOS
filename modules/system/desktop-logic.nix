@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (true) {
+  config = lib.mkIf (config.services.xserver.enable || config.programs.hyprland.enable) {
     # 1. Automatic linking for Home Manager apps
     # This triggers if EITHER Xserver or Hyprland is enabled system-wide
     environment.pathsToLink = [ 

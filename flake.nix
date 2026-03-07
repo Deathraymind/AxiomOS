@@ -36,6 +36,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/vm/configuration.nix
+        ./modules/system/default.nix
         inputs.home-manager.nixosModules.default
         {
           home-manager = {

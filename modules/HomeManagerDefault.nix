@@ -5,7 +5,6 @@
     ./home-manager/hyprland/hyprpaper.nix
     ./home-manager/hyprland/hyprbar.nix
     ./home-manager/homeStylix.nix
-    ./system/desktop-logic.nix
 
 
   ];

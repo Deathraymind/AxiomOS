@@ -10,7 +10,7 @@
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
   imports = [
-   ../../modules/HomeManagerDefault.nix  
+   ../../modules/home-manager/default.nix  
   ];
   axiomos.hyprland.enable = true;
   axiomos.homeStylix.enable = true;
