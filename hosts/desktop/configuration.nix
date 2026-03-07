@@ -43,6 +43,7 @@ users.mutableUsers = false;
 
     ## Home Manager Import ##
     axiomos.steam.enable = true;
+    axiomos.stylix.enable=true;
 
   services.openssh.enable = true;
 
