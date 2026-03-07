@@ -4,9 +4,6 @@ let
    cfg = config.axiomos.homeStylix; 
 in 
 {
-imports = [
-    inputs.stylix.homeModules.stylix
-  ];
 
  ### 1. Define the "Switch"
   options.axiomos.homeStylix= {
@@ -15,6 +12,7 @@ imports = [
 
   ### 2. The Logic
   config = lib.mkIf cfg.enable {
+
  
 
   stylix = {

@@ -21,6 +21,7 @@
         ./modules/system/default.nix
         ./modules/programs/defaultPrograms.nix
         inputs.home-manager.nixosModules.default
+        inputs.stylix.nixosModules.stylix
         {
           home-manager = {
             extraSpecialArgs = { inherit inputs; }; 
