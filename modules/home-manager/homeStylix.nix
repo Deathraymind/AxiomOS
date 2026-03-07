@@ -1,9 +1,13 @@
 # homeStylix.nix
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
    cfg = config.axiomos.homeStylix; 
 in 
 {
+imports = [
+    inputs.stylix.homeModules.stylix
+  ];
+
  ### 1. Define the "Switch"
   options.axiomos.homeStylix= {
     enable = lib.mkEnableOption "AxiomOS Home-Manager Stylix Configuration";
@@ -11,6 +15,7 @@ in
 
   ### 2. The Logic
   config = lib.mkIf cfg.enable {
+ 
 
   stylix = {
     enable = true;

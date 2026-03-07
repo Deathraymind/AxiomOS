@@ -1,4 +1,4 @@
-{ ... }: {
+{  ... }: {
   imports = [
     ./home-manager/hyprland/hyprland.nix
     ./home-manager/hyprland/hyprspace.nix
