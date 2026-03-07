@@ -5,7 +5,7 @@
     ./hyprland/hyprpaper.nix
     ./hyprland/hyprbar.nix
     ./homeStylix.nix
-
+    ./git.nix
 
   ];
 }
