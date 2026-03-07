@@ -13,6 +13,7 @@
    ../../modules/default.nix  
   ];
   axiomos.hyprland.enable = true;
+  axiomos.homeStylix.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

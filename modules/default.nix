@@ -4,6 +4,7 @@
     ./home-manager/hyprland/hyprspace.nix
     ./home-manager/hyprland/hyprpaper.nix
     ./home-manager/hyprland/hyprbar.nix
+    ./home-manager/homeStylix.nix
 
   ];
 }
