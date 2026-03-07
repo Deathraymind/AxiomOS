@@ -6,6 +6,7 @@
     ./hyprland/hyprbar.nix
     ./homeStylix.nix
     ./git.nix
+    ./zsh.nix
 
   ];
 }

@@ -16,6 +16,7 @@
   axiomos.homeStylix.enable = true;
   axiomos.hyprspace.enable = true;
   axiomos.git.enable = true;
+  axiomos.zsh.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
