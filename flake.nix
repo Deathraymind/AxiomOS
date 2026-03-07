@@ -18,8 +18,15 @@
       specialArgs = { inherit inputs; }; 
       modules = [
         ./hosts/desktop/configuration.nix
-        ./axiomosModules/programs/hyprland.nix
-        ./axiomosModules/programs/defaultPrograms.nix
+        ./modules/system/default.nix
+        ./modules/programs/defaultPrograms.nix
+        inputs.home-manager.nixosModules.default
+        {
+          home-manager = {
+            extraSpecialArgs = { inherit inputs; }; 
+            users.deathraymind = import ./hosts/desktop/home.nix;
+          };
+        }
       ];
     };
 
@@ -40,7 +47,6 @@
         inputs.home-manager.nixosModules.default
         {
           home-manager = {
-            # This is the critical line you were missing:
             extraSpecialArgs = { inherit inputs; }; 
             users.deathraymind = import ./hosts/vm/home.nix;
           };

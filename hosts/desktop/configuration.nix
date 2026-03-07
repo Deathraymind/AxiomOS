@@ -5,10 +5,26 @@
     [ 
       ./hardware-configuration.nix
     ];
+ boot.loader = {
+    grub = {
+      enable = lib.mkForce true;
+       efiSupport = true;
+       devices = [ "nodev" ];
+      configurationName = "BowOS";
+      fontSize = 26;
+      useOSProber = true;
+    };
+    efi = {
+       canTouchEfiVariables = true;
+      # Optional: specify EFI mount point if non-standard
+       efiSysMountPoint = "/boot";
+    };
+  };
+
+  boot.loader.systemd-boot.enable = false;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "AxiomOS"; 
   networking.networkmanager.enable = true;  
