@@ -14,7 +14,7 @@ in
  
 
 
-git = {
+programs.git = {
       enable = true;
       userName = "Deathraymind";
       userEmail = "deathraymind@gmail.com";
