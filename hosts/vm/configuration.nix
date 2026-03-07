@@ -59,7 +59,7 @@ services.greetd = {
     settings = {
       default_session = {
         # Replace <your_username> with your actual user
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
       initial_session = {
