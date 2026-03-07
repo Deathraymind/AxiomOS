@@ -10,10 +10,9 @@
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
   imports = [
-  ../../modules/home-manager/hyprland/hyprland.nix
-  ../../modules/home-manager/hyprland/hyprspace.nix
-  ../../modules/home-manager/hyprland/hyprpaper.nix
-  ]; 
+   ../../modules/default.nix  
+  ];
+  axiomos.hyprland.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

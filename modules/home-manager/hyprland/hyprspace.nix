@@ -1,16 +1,26 @@
-{ lib, pkgs, ... }: {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    plugins = [
-        pkgs.hyprlandPlugins.hyprspace
-    ];
-    settings = {
+{ lib, config, pkgs, ... }: 
+let 
+    cfg = config.axiomos.hyprspace;
+in
+{
+    options.axiomos.hyprspace = {
+        enable = lib.mkEnableOption "AxiomOS hyprspace Configuration";
 
-
-      bind = [
-        "bind = SUPER, Tab, overview:toggle,"
-    ];
     };
-};
+    config = lib.mkIf cfg.enable{
+      wayland.windowManager.hyprland = {
+        enable = true;
+        plugins = [
+            pkgs.hyprlandPlugins.hyprspace
+        ];
+        settings = {
+
+
+          bind = [
+            "bind = SUPER, Tab, overview:toggle,"
+          ];
+        };
+      };
+    };
 }
 
