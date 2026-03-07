@@ -6,7 +6,7 @@ in
 
  ### 1. Define the "Switch"
   options.axiomos.git= {
-    enable = lib.mkEnableOption "AxiomOS Home-Manager Stylix Configuration";
+    enable = lib.mkEnableOption "AxiomOS git Configuration";
   };
 
   ### 2. The Logic
