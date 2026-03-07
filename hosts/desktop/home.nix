@@ -14,7 +14,7 @@
   ];
   axiomos.hyprland.enable = true;
   axiomos.homeStylix.enable = true;
-  axiomos.hyprspace.enable = true;
+  axiomos.hyprspace.enable = false;
   axiomos.git.enable = true;
   axiomos.zsh.enable = true;
 

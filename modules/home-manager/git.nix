@@ -16,8 +16,10 @@ in
 
 programs.git = {
       enable = true;
-      userName = "Deathraymind";
-      userEmail = "deathraymind@gmail.com";
+      settings.user = {
+       name = "Deathraymind";
+       email = "deathraymind@gmail.com";
+      };
     };
     };
 }
