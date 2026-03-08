@@ -1,10 +1,12 @@
-{ lib, pkgs, config, ... }:
-
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   # This makes it easier to reference your own toggle
   cfg = config.axiomos.hyprland;
-in
-{
+in {
   ### 1. Define the "Switch"
   options.axiomos.hyprland = {
     enable = lib.mkEnableOption "AxiomOS Hyprland Composite Config";
@@ -12,7 +14,6 @@ in
 
   ### 2. The Logic (Only applies if enable is true)
   config = lib.mkIf cfg.enable {
-    
     # We can automatically install helper apps when Hyprland is on
     home.packages = with pkgs; [
       kitty
@@ -24,7 +25,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
-        exec-once = [ ];
+        exec-once = [];
 
         bind = [
           "SUPER, Q, killactive,"

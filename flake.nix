@@ -2,10 +2,9 @@
   description = "A very basic flake";
 
   inputs = {
+    # Official Plugins Flake - forced to follow your Hyprland version
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
