@@ -12,10 +12,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs : {
-
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; }; 
+      specialArgs = {inherit inputs;};
       modules = [
         ./hosts/desktop/configuration.nix
         ./modules/system/default.nix
@@ -24,7 +27,7 @@
         inputs.stylix.nixosModules.stylix
         {
           home-manager = {
-            extraSpecialArgs = { inherit inputs; }; 
+            extraSpecialArgs = {inherit inputs;};
             users.deathraymind = import ./hosts/desktop/home.nix;
           };
         }
@@ -32,7 +35,7 @@
     };
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; }; 
+      specialArgs = {inherit inputs;};
       modules = [
         ./hosts/laptop/configuration.nix
         ./axiomosModules/programs/hyprland.nix
@@ -41,18 +44,18 @@
     };
 
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./hosts/vm/configuration.nix
         ./modules/system/default.nix
         inputs.home-manager.nixosModules.default
         {
           home-manager = {
-            extraSpecialArgs = { inherit inputs; }; 
+            extraSpecialArgs = {inherit inputs;};
             users.deathraymind = import ./hosts/vm/home.nix;
           };
         }
       ];
     };
-  }; 
+  };
 }

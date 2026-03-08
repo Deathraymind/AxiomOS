@@ -1,4 +1,4 @@
-{  ... }: {
+{...}: {
   imports = [
     ./hyprland/hyprland.nix
     ./hyprland/hyprspace.nix
@@ -7,6 +7,6 @@
     ./homeStylix.nix
     ./git.nix
     ./zsh.nix
-
+    ./kitty.nix
   ];
 }
