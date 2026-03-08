@@ -8,15 +8,42 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # This block only works if 'inputs.stylix.nixosModules.stylix' 
-    # is in your flake.nix configuration!
+    # 1. System-wide Font Registration
+    fonts = {
+      packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.symbols-only
+        
+        # --- THE FIX: Japanese/CJK Support ---
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+      ];
+
+      # This tells the system: "If JetBrains doesn't have it, use Noto CJK"
+      fontconfig.defaultFonts = {
+        monospace = [ "JetBrainsMono Nerd Font Mono" "Noto Sans Mono CJK JP" ];
+        sansSerif = [ "JetBrainsMono Nerd Font" "Noto Sans CJK JP" ];
+        serif     = [ "JetBrainsMono Nerd Font" "Noto Serif CJK JP" ];
+      };
+    };
+
+    # 2. Home Manager configuration
+    home-manager.users.deathraymind = {
+      stylix.targets.kitty.enable = true; 
+      stylix.targets.firefox.enable = true; 
+
+      programs.kitty = {
+        enable = true;
+        # Force kitty to handle the fallback gracefully
+        extraConfig = "symbol_map U+4E00-U+9FFF,U+3041-U+3096,U+30A1-U+30FC Noto Sans CJK JP";
+      };
+    };
+
+    # 3. Main Stylix Configuration
     stylix = {
       enable = true;
       polarity = "dark";
-      image = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/orxngc/walls-catppuccin-mocha/master/dominik-mayer-17.jpg";
-        sha256 = "sha256-Ez/0PPNPg65wkb3MuWl6b0j09Y3gxpHoXxxsSGwsv1c=";
-      };
 
       cursor = {
         package = pkgs.bibata-cursors;
@@ -25,7 +52,6 @@ in
       };
 
       fonts = {
-        # FIXED: Use 'nerd-fonts' (hyphenated) and specific package names
         monospace = {
           package = pkgs.nerd-fonts.jetbrains-mono;
           name = "JetBrainsMono Nerd Font Mono";
@@ -37,6 +63,11 @@ in
         serif = {
           package = pkgs.nerd-fonts.jetbrains-mono;
           name = "JetBrainsMono Nerd Font";
+        };
+        sizes = {
+          applications = 12;
+          terminal = 12;
+          popups = 10;
         };
       };
 

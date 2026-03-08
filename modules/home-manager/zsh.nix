@@ -1,6 +1,5 @@
-{ lib, config, inputs, ... }:
+{ lib, config, pkgs, ... }:
 let
-  # Update this to point to the zsh option!
   cfg = config.axiomos.zsh;  
 in 
 {
@@ -9,7 +8,7 @@ in
     enable = lib.mkEnableOption "AxiomOS zsh Configuration";
   };
 
-  ### 2. The Logic
+  ### 2. The Logic (Home Manager only!)
   config = lib.mkIf cfg.enable {
     programs.zsh = {
       enable = true;
