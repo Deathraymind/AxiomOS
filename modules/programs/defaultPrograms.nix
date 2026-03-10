@@ -7,5 +7,6 @@
     git
     firefox
     kitty
+    xorg.xrdb
   ];
 }

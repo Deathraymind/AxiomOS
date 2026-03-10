@@ -12,7 +12,16 @@
     # This pulls the exact 'AxiomOS' package you were running
     # and installs it as 'nvim' on your system path.
     inputs.nvf-custom.packages.${pkgs.system}.default
+    pkgs.hyprpaper
   ];
+  programs.hyprland = {
+    enable = true;
+    # Force NixOS to use the v0.53.0 flake input
+    package = lib.mkForce inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = lib.mkForce inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  # Kill that xrdb error once and for all
   # We still enable the module so Nix knows how to handle the manual/docs
   # but we don't need to define 'settings' if you just want the fork's defaults.
 
@@ -84,7 +93,6 @@
   axiomos.stylix.enable = true;
 
   services.openssh.enable = true;
-  networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
   services.upower.enable = true; # Needed for battery status
 

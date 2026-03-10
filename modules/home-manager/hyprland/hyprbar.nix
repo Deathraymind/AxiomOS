@@ -1,9 +1,11 @@
-{ lib, pkgs, config, ... }:
-
-let
-  cfg = config.axiomos.hyprbar;
-in
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
+  cfg = config.axiomos.hyprbar;
+in {
   ### 1. Define the "Switch"
   options.axiomos.hyprbar = {
     enable = lib.mkEnableOption "AxiomOS Hyprbar Configuration";
@@ -11,9 +13,8 @@ in
 
   ### 2. The Logic
   config = lib.mkIf cfg.enable {
-    
     # Required for your minimize/maximize scripts to work
-    home.packages = [ pkgs.jq ];
+    home.packages = [pkgs.jq];
 
     wayland.windowManager.hyprland = {
       plugins = [
@@ -22,7 +23,7 @@ in
 
       settings = {
         "plugin:hyprbars" = {
-          bar_height = 25;
+          bar_height = 16;
           bar_color = "0xee1e1e2e";
           "col.text" = "0xffcdd6f4";
           bar_text_font = "Sans";
@@ -31,12 +32,12 @@ in
 
           hyprbars-button = let
             closeAction = "hyprctl dispatch killactive";
-            
+
             # Minimize logic scripts
             isOnSpecial = "hyprctl activewindow -j | jq -re 'select(.workspace.name == \"special\")' >/dev/null";
             moveToSpecial = "hyprctl dispatch movetoworkspacesilent special";
             moveToActive = "hyprctl dispatch movetoworkspacesilent name:$(hyprctl -j activeworkspace | jq -re '.name')";
-            
+
             minimizeAction = "${isOnSpecial} && ${moveToActive} || ${moveToSpecial}";
             maximizeAction = "hyprctl dispatch togglefloating";
           in [
@@ -49,4 +50,3 @@ in
     };
   };
 }
-

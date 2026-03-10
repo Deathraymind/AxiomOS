@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }: let
   # This makes it easier to reference your own toggle
@@ -23,7 +24,10 @@ in {
     ];
 
     wayland.windowManager.hyprland = {
+      package = lib.mkForce inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       enable = true;
+
+      systemd.enable = false;
       settings = {
         exec-once = [];
 

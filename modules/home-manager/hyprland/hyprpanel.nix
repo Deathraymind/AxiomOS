@@ -1,17 +1,14 @@
 # hyprpanel.nix
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.hyprpanel = {
     enable = true;
-    systemd.enable = true; # Automatically starts the bar when you log in
-    hyprland.enable = true; # Integrates directly with Hyprland
-    overwrite.enable = true; # Ensures HM settings take priority over manual GUI changes
 
-    # Set up your layout
-    layout = {
+    # The 'overlay.enable' and 'layout' options are likely gone
+    # from the HM module to prevent recursion errors.
+    # We now pass everything through the 'settings' or 'extraConfig' attributes.
+
+    settings = {
+      # This is the new way to define layout in the official module
       "bar.layouts" = {
         "0" = {
           left = ["dashboard" "workspaces" "windowtitle"];
@@ -19,11 +16,9 @@
           right = ["volume" "network" "bluetooth" "battery" "clock" "notifications"];
         };
       };
-    };
 
-    # Fine-tune settings (Wi-Fi, Clock, etc.)
-    settings = {
-      bar.workspaces.show_icons = true;
+      # Your other settings
+      bar.launcher.auto_icon = true;
       menus.clock.time.military = true;
       menus.dashboard.stats.enable_gpu = true;
       theme.bar.transparent = true;

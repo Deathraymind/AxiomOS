@@ -14,8 +14,8 @@
     ../../modules/home-manager/default.nix
   ];
   axiomos.hyprland.enable = true;
+  axiomos.hyprspace.enable = false;
   axiomos.hyprpaper.enable = true;
-  axiomos.homeStylix.enable = false;
   axiomos.git.enable = true;
   axiomos.zsh.enable = true;
   axiomos.kitty.enable = true;
