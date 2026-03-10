@@ -8,5 +8,6 @@
     ./zsh.nix
     ./kitty.nix
     ./hyprland/hyprpanel.nix
+    ./wayland.nix
   ];
 }

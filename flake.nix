@@ -35,7 +35,9 @@
         {
           home-manager = {
             extraSpecialArgs = {inherit inputs;};
-            users.deathraymind = import ./hosts/desktop/home.nix;
+            users.deathraymind.imports = [
+              ./hosts/desktop/home.nix
+            ];
           };
         }
       ];

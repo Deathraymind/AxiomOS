@@ -16,7 +16,9 @@
   axiomos.hyprland.enable = true;
   axiomos.hyprspace.enable = false;
   axiomos.hyprpaper.enable = true;
-  axiomos.hyprpanel.enable = true;
+  axiomos.hyprpanel.enable = false;
+  axiomos.waybar.enable = true;
+
   axiomos.git.enable = true;
   axiomos.zsh.enable = true;
   axiomos.kitty.enable = true;
