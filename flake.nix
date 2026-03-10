@@ -5,6 +5,8 @@
     # Official Plugins Flake - forced to follow your Hyprland version
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stylix.url = "github:danth/stylix";
+    nvf-custom.url = "github:deathraymind/nvf";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +26,7 @@
         ./modules/programs/defaultPrograms.nix
         inputs.home-manager.nixosModules.default
         inputs.stylix.nixosModules.stylix
+        inputs.hyprpanel.homeManagerModules.hyprpanel
         {
           home-manager = {
             extraSpecialArgs = {inherit inputs;};

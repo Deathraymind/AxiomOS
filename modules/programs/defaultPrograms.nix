@@ -1,12 +1,11 @@
-{inputs, pkgs, ...}: {
-
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-    git 
-    neovim 
+    git
     firefox
     kitty
   ];
-
-
-
 }
