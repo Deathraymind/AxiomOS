@@ -6,11 +6,11 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     stylix.url = "github:danth/stylix";
     nvf-custom.url = "github:deathraymind/nvf";
-    hyprland.url = "github:hyprwm/Hyprland/v0.53.0";
+    hyprland.url = "github:hyprwm/Hyprland/";
 
     # Add Hyprspace here pinned to the working commit
     hyprspace = {
-      url = "github:KZDKM/Hyprspace/bcd9692"; # Pinned to the 0.53 compat commit
+      url = "github:KZDKM/Hyprspace"; # Pinned to the 0.53 compat commit
       inputs.hyprland.follows = "hyprland";
     };
     home-manager = {
