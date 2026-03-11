@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }: let
   cfg = config.axiomos.hyprbar;
@@ -18,7 +19,7 @@ in {
 
     wayland.windowManager.hyprland = {
       plugins = [
-        pkgs.hyprlandPlugins.hyprbars
+        inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       ];
 
       settings = {

@@ -32,6 +32,7 @@ in {
         exec-once = [];
 
         bind = [
+          "SUPER SHIFT, P, exec, hyprshot -m region"
           "SUPER, Q, killactive,"
           "SUPER, W, togglefloating,"
           "SUPER, A, exec, rofi -show drun"
@@ -52,10 +53,37 @@ in {
           "SUPER SHIFT CONTROL, right, movewindow, r"
           "SUPER SHIFT CONTROL, up, movewindow, u"
           "SUPER SHIFT CONTROL, down, movewindow, d"
+
+          # Move window to relative workspace
+          "SUPER CTRL ALT, right, movetoworkspace, r+1"
+          "SUPER CTRL ALT, left, movetoworkspace, r-1"
+          "SUPER CTRL ALT, L, movetoworkspace, r+1"
+          "SUPER CTRL ALT, H, movetoworkspace, r-1"
+
+          # Move window in workspace
+          "SUPER SHIFT CONTROL, left, movewindow, l"
+          "SUPER SHIFT CONTROL, right, movewindow, r"
+          "SUPER SHIFT CONTROL, up, movewindow, u"
+          "SUPER SHIFT CONTROL, down, movewindow, d"
+          "SUPER SHIFT CONTROL, H, movewindow, l"
+          "SUPER SHIFT CONTROL, L, movewindow, r"
+          "SUPER SHIFT CONTROL, K, movewindow, u"
+          "SUPER SHIFT CONTROL, J, movewindow, d"
+
+          # Move focus
+          "SUPER, left, movefocus, l"
+          "SUPER, right, movefocus, r"
+          "SUPER, up, movefocus, u"
+          "SUPER, down, movefocus, d"
+          "SUPER, H, movefocus, l"
+          "SUPER, L, movefocus, r"
+          "SUPER, J, movefocus, u"
+          "SUPER, K, movefocus, d"
         ];
 
         bindm = [
           "SUPER, mouse:272, movewindow"
+          "SUPER, X, resizewindow"
           "SUPER, mouse:273, resizewindow"
         ];
 
@@ -74,14 +102,28 @@ in {
         ];
 
         general = {
-          gaps_in = 2;
-          gaps_out = 4;
+          gaps_in = 4;
+          gaps_out = 8;
           border_size = 1;
           layout = "dwindle";
+
+          "col.active_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base03}ff)";
+          "col.inactive_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base01}ff)";
+
+          resize_on_border = true;
+          extend_border_grab_area = 20; # This gives you 20px of "leeway" to grab
+          hover_icon_on_border = true; # Changes cursor to resize arrows
         };
 
         decoration = {
-          rounding = 8;
+          rounding = 15;
+          shadow = {
+            enabled = true;
+            range = 8;
+            render_power = 4;
+            offset = "5 5";
+            color = lib.mkForce "rgba(00000066)";
+          };
         };
       };
     };

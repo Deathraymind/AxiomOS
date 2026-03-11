@@ -18,6 +18,7 @@
   axiomos.hyprpaper.enable = true;
   axiomos.hyprpanel.enable = false;
   axiomos.waybar.enable = true;
+  axiomos.hyprbar.enable = false;
 
   axiomos.git.enable = true;
   axiomos.zsh.enable = true;

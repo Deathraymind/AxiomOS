@@ -13,6 +13,7 @@
     # and installs it as 'nvim' on your system path.
     inputs.nvf-custom.packages.${pkgs.system}.default
     pkgs.hyprpaper
+    pkgs.hyprshot
   ];
 
   # Kill that xrdb error once and for all

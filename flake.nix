@@ -7,6 +7,10 @@
     stylix.url = "github:danth/stylix";
     nvf-custom.url = "github:deathraymind/nvf";
     hyprland.url = "github:hyprwm/Hyprland/";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland"; # This is the magic line
+    };
 
     # Add Hyprspace here pinned to the working commit
     hyprspace = {
