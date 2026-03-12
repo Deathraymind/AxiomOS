@@ -23,6 +23,7 @@
   axiomos.git.enable = true;
   axiomos.zsh.enable = true;
   axiomos.kitty.enable = true;
+  axiomos.rofi.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

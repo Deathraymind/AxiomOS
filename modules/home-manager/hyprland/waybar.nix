@@ -9,9 +9,9 @@
   # --- TWEAK THESE ---
   vars = {
     bg = "#${config.stylix.base16Scheme.base00}";
-    border-color = "#${config.stylix.base16Scheme.base01}"; # rgba(${config.stylix.base16Scheme.base01}ff)
+    border-color = "#${config.stylix.base16Scheme.base03}"; # rgba(${config.stylix.base16Scheme.base01}ff)
     radius = "15px";
-    thickness = "0px";
+    thickness = "1px";
     opacity = "0.9";
     font-size = "14px";
     accent = "#89B4FB";

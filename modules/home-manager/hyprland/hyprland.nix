@@ -32,6 +32,7 @@ in {
         exec-once = [];
 
         bind = [
+          "SUPER, A, exec, rofi -show drun"
           "SUPER SHIFT, P, exec, hyprshot -m region"
           "SUPER, Q, killactive,"
           "SUPER, W, togglefloating,"
