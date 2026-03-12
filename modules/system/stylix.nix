@@ -1,10 +1,19 @@
-{ config, pkgs, lib, ... }: 
-let
-  cfg = config.axiomos.stylix; 
-in 
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.axiomos.stylix;
+  themes = import ./themes.nix;
+in {
   options.axiomos.stylix = {
     enable = lib.mkEnableOption "AxiomOS stylix Configuration";
+    theme = lib.mkOption {
+      type = lib.types.str;
+      default = "catppuccin-mocha";
+      description = "The name of the theme to use from themes.nix";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -13,7 +22,7 @@ in
       packages = with pkgs; [
         nerd-fonts.jetbrains-mono
         nerd-fonts.symbols-only
-        
+
         # --- THE FIX: Japanese/CJK Support ---
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
@@ -22,16 +31,16 @@ in
 
       # This tells the system: "If JetBrains doesn't have it, use Noto CJK"
       fontconfig.defaultFonts = {
-        monospace = [ "JetBrainsMono Nerd Font Mono" "Noto Sans Mono CJK JP" ];
-        sansSerif = [ "JetBrainsMono Nerd Font" "Noto Sans CJK JP" ];
-        serif     = [ "JetBrainsMono Nerd Font" "Noto Serif CJK JP" ];
+        monospace = ["JetBrainsMono Nerd Font Mono" "Noto Sans Mono CJK JP"];
+        sansSerif = ["JetBrainsMono Nerd Font" "Noto Sans CJK JP"];
+        serif = ["JetBrainsMono Nerd Font" "Noto Serif CJK JP"];
       };
     };
 
     # 2. Home Manager configuration
     home-manager.users.deathraymind = {
-      stylix.targets.kitty.enable = true; 
-      stylix.targets.firefox.enable = true; 
+      stylix.targets.kitty.enable = true;
+      stylix.targets.firefox.enable = true;
 
       programs.kitty = {
         enable = true;
@@ -42,6 +51,7 @@ in
 
     # 3. Main Stylix Configuration
     stylix = {
+      base16Scheme = themes.${cfg.theme};
       enable = true;
       polarity = "dark";
 
@@ -69,13 +79,6 @@ in
           terminal = 12;
           popups = 10;
         };
-      };
-
-      base16Scheme = {
-        base00 = "1e1e2e"; base01 = "181825"; base02 = "313244"; base03 = "45475a";
-        base04 = "585b70"; base05 = "cdd6f4"; base06 = "f5e0dc"; base07 = "b4befe";
-        base08 = "f38ba8"; base09 = "fab387"; base0A = "f9e2af"; base0B = "a6e3a1";
-        base0C = "94e2d5"; base0D = "89b4fa"; base0E = "cba6f7"; base0F = "f2cdcd";
       };
 
       targets.console.enable = true;

@@ -85,7 +85,10 @@
 
   ## Home Manager Import ##
   axiomos.steam.enable = true;
-  axiomos.stylix.enable = true;
+  axiomos.stylix = {
+    enable = true;
+    theme = "sagelight";
+  };
 
   services.openssh.enable = true;
   hardware.bluetooth.enable = true;
