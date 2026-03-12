@@ -9,5 +9,6 @@
     ./kitty.nix
     ./hyprland/hyprpanel.nix
     ./hyprland/waybar.nix
+    ./rofi.nix
   ];
 }
