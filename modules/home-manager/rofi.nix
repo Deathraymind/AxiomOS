@@ -19,7 +19,8 @@
     iconSize = "36px";
 
     # Gaps and Spacing
-    windowSpacing = "0px";
+    marginTop = "4px 0px 0px 0px";
+    windowSpacing = "4px";
     mainboxPadding = "15px";
     listboxSpacing = "10px";
     listboxPadding = "10px";
@@ -50,6 +51,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    wayland.windowManager.hyprland.settings = {
+      layerrule = [
+        "animation slide top, match:namespace ^(rofi)$"
+      ];
+    };
     programs = lib.mkForce {
       rofi = {
         enable = true;
@@ -59,8 +65,6 @@ in {
           show-icons = true;
           icon-theme = settings.iconTheme;
           location = 2;
-          yoffset = 0;
-          xoffset = 0;
           font = settings.font;
           drun-display-format = "{icon} {name}";
           display-drun = " Apps";
@@ -84,6 +88,7 @@ in {
           "window" = {
             width = mkLiteral settings.windowWidth;
             transparency = "real";
+            margin = mkLiteral settings.marginTop;
             orientation = mkLiteral "vertical";
             cursor = mkLiteral "default";
             spacing = mkLiteral settings.windowSpacing;

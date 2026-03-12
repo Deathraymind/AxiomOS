@@ -29,6 +29,26 @@ in {
 
       systemd.enable = false;
       settings = {
+        animations = {
+          enabled = true;
+          # 1. Define curves (Beziers)
+          # name, x0, y0, x1, y1
+          bezier = [
+            "myBezier, 0.05, 0.9, 0.1, 1.05"
+            "overshot, 0.05, 0.9, 0.1, 1.1"
+            "smooth, 0.87,0.39,1,0.81"
+          ];
+
+          # 2. Assign animations
+          # name, enable, speed, curve, style
+          animation = [
+            "windows, 1, 3, smooth, slide top"
+            "fade, 1, 3, default"
+            "windowsOut, 1, 3, smooth, slide bottom"
+            "border, 1, 3, default"
+            "workspaces, 1, 3, default"
+          ];
+        };
         exec-once = [];
 
         bind = [
