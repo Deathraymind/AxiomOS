@@ -56,7 +56,7 @@
   networking.hostName = "AxiomOS";
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Japan/Tokyo";
+  time.timeZone = "Asia/Tokyo";
 
   # Select internationalisation properties
   i18n.defaultLocale = "en_US.UTF-8";
@@ -87,7 +87,7 @@
   axiomos.steam.enable = true;
   axiomos.stylix = {
     enable = true;
-    theme = "sagelight";
+    theme = "oxocarbon-dark";
   };
 
   services.openssh.enable = true;

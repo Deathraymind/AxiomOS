@@ -9,6 +9,7 @@
   # --- TWEAK THESE ---
   vars = {
     bg = "#${config.stylix.base16Scheme.base00}";
+    text = "#${config.stylix.base16Scheme.base05}";
     border-color = "#${config.stylix.base16Scheme.base03}"; # rgba(${config.stylix.base16Scheme.base01}ff)
     radius = "15px";
     thickness = "1px";
@@ -144,6 +145,7 @@ in {
             font-weight: bold;
             font-size: ${vars.font-size};
             min-height: 20px;
+            color: ${vars.text}; /* Add this line */
         }
 
         window#waybar {
@@ -306,13 +308,11 @@ in {
             margin-top: ${vars.margin-top};
             margin-bottom: ${vars.margin-bottom};
             border-radius: ${vars.radius} 0px 0px ${vars.radius};
-            color: #B8C0E2;
             border-top: ${border-style};
             border-bottom: ${border-style};
             border-left: ${border-style};
         }
         #workspaces button label {
-            color: #B8C0E2;
             font-size: ${vars.font-size};
         }
         #workspaces button:hover { background-color: ${vars.accent}; }

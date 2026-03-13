@@ -37,4 +37,78 @@
     base0E = "c8a0d2";
     base0F = "d2b2a0";
   };
+  oxocarbon-dark = {
+    base00 = "161616";
+    base01 = "262626";
+    base02 = "393939";
+    base03 = "525252";
+    base04 = "dde1e6";
+    base05 = "f2f4f8";
+    base06 = "ffffff";
+    base07 = "08bdba";
+    base08 = "ee5396";
+    base09 = "ff7eb6";
+    base0A = "ff6f00";
+    base0B = "42be65";
+    base0C = "3ddbd9";
+    base0D = "33b1ff";
+    base0E = "be95ff";
+    base0F = "82cfff";
+  };
+  tokyo-night = {
+    base00 = "1a1b26"; # Background
+    base01 = "16161e"; # Black / Darker Background
+    base02 = "24283b"; # Selection Background
+    base03 = "414868"; # Comments
+    base04 = "565f89"; # Darker Foreground
+    base05 = "c0caf5"; # Foreground / Variables
+    base06 = "a9b1d6"; # Light Foreground
+    base07 = "cfc9c2"; # Very Light Foreground
+    base08 = "f7768e"; # Red (Tags, Keywords)
+    base09 = "ff9e64"; # Orange (Numbers, Booleans)
+    base0A = "e0af68"; # Yellow (Functions)
+    base0B = "9ece6a"; # Green (Strings)
+    base0C = "7dcfff"; # Cyan (Regex, Operators)
+    base0D = "7aa2f7"; # Blue (Functions, Titles)
+    base0E = "bb9af7"; # Magenta (Control Keywords)
+    base0F = "c0caf5"; # Extra (Variables)
+  };
+
+  tokyo-night-storm = {
+    base00 = "24283b"; # Background (Storm)
+    base01 = "1f2335"; # Darker Background
+    base02 = "292e42"; # Selection Background
+    base03 = "414868"; # Comments
+    base04 = "565f89"; # Darker Foreground
+    base05 = "c0caf5"; # Foreground
+    base06 = "a9b1d6"; # Light Foreground
+    base07 = "cfc9c2"; # Very Light Foreground
+    base08 = "f7768e"; # Red
+    base09 = "ff9e64"; # Orange
+    base0A = "e0af68"; # Yellow
+    base0B = "9ece6a"; # Green
+    base0C = "7dcfff"; # Cyan
+    base0D = "7aa2f7"; # Blue
+    base0E = "bb9af7"; # Magenta
+    base0F = "c0caf5"; # Variables
+  };
+
+  tokyo-night-light = {
+    base00 = "e6e7ed"; # Background
+    base01 = "d5d6db"; # Darker Background
+    base02 = "cbccd1"; # Selection
+    base03 = "6c6e75"; # Comments
+    base04 = "4f525e"; # Darker Foreground
+    base05 = "343b58"; # Foreground
+    base06 = "40434f"; # Light Foreground
+    base07 = "565a6e"; # Very Light Foreground
+    base08 = "8c4351"; # Red
+    base09 = "965027"; # Orange
+    base0A = "8f5e15"; # Yellow
+    base0B = "385f0d"; # Green
+    base0C = "0f4b6e"; # Cyan
+    base0D = "2959aa"; # Blue
+    base0E = "5a3e8e"; # Magenta
+    base0F = "343b58"; # Variables
+  };
 }
