@@ -10,5 +10,6 @@
     ./hyprland/hyprpanel.nix
     ./hyprland/waybar.nix
     ./rofi.nix
+    ./applications/freecad.nix
   ];
 }

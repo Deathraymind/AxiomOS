@@ -21,8 +21,8 @@ in {
       settings = {
         ipc = "on";
         splash = false;
-        preload = ["${./nixwallpaper.jpg}"];
-        wallpaper = [",${./nixwallpaper.jpg}"];
+        preload = ["${./oxocarbon-black.jpg}"];
+        wallpaper = [",${./oxocarbon-black.jpg}"];
       };
     };
 
