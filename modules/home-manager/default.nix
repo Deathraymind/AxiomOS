@@ -12,6 +12,7 @@
     ./rofi.nix
     ./applications/freecad.nix
     ./applications/pavucontrol.nix
+    ./applications/blueman.nix
     ./starship.nix
   ];
 }
