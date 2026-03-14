@@ -11,5 +11,6 @@
     ./hyprland/waybar.nix
     ./rofi.nix
     ./applications/freecad.nix
+    ./starship.nix
   ];
 }
