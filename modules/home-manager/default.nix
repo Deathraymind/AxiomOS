@@ -13,6 +13,7 @@
     ./applications/freecad.nix
     ./applications/pavucontrol.nix
     ./applications/blueman.nix
+    ./applications/network.nix
     ./starship.nix
   ];
 }
