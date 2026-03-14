@@ -38,22 +38,27 @@
     base0F = "d2b2a0";
   };
   oxocarbon-dark = {
-    base00 = "161616";
-    base01 = "262626";
-    base02 = "393939";
-    base03 = "525252";
-    base04 = "dde1e6";
-    base05 = "f2f4f8";
-    base06 = "ffffff";
-    base07 = "08bdba";
-    base08 = "ee5396";
-    base09 = "ff7eb6";
-    base0A = "ff6f00";
-    base0B = "42be65";
-    base0C = "3ddbd9";
-    base0D = "33b1ff";
-    base0E = "be95ff";
-    base0F = "82cfff";
+    # --- Backgrounds & Layers ---
+    base00 = "161616"; # Background (Darkest)
+    base01 = "262626"; # Lighter Background (Status bars)
+    base02 = "393939"; # Selection/Highlight (Dimmer gray)
+    base03 = "525252"; # Comments/Muted text
+
+    # --- Foreground & Typography ---
+    base04 = "dde1e6"; # Dark Gray Text (Subtle)
+    base05 = "f2f4f8"; # Main Body Text (Whiteish)
+    base06 = "ffffff"; # Bright White (Headlines/Active)
+
+    # --- Accents & Icons (The Colors) ---
+    base07 = "08bdba"; # Teal / Cyan
+    base08 = "3ddbd9"; # Bright Aqua (Neon)
+    base09 = "78a9ff"; # Sky Blue (Main accent)
+    base0A = "ee5396"; # Magenta / Pink (Warm)
+    base0B = "33b1ff"; # Steel Blue (Professional)
+    base0C = "ff7eb6"; # Pastel Pink / Rose
+    base0D = "42be65"; # Oxocarbon Green (Success)
+    base0E = "be95ff"; # Purple (Axiom Signature)
+    base0F = "82cfff"; # Soft Light Blue
   };
   tokyo-night = {
     base00 = "1a1b26"; # Background
