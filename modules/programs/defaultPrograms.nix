@@ -8,5 +8,6 @@
     firefox
     kitty
     xorg.xrdb
+    orca-slicer
   ];
 }
