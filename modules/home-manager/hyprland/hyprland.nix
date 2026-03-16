@@ -26,6 +26,7 @@ in {
     wayland.windowManager.hyprland = {
       package = lib.mkForce inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       enable = true;
+      withUWSM = true;
 
       systemd.enable = false;
       settings = {

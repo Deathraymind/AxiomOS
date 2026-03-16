@@ -91,7 +91,8 @@
   };
 
   services.openssh.enable = true;
-  services.cachy.enable = true;
+  axiomos.cachy.enable = true;
+  axiomos.autologin.enable = true;
 
   hardware.bluetooth.enable = true;
   services.upower.enable = true; # Needed for battery status
