@@ -18,7 +18,7 @@ in {
       settings = {
         default_session = {
           # Replace 'yourusername' with your actual NixOS username
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd 'uwsm start hyprland-uwsm.desktop'";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd 'start-hyprland'";
           user = "deathraymind";
         };
       };
