@@ -15,6 +15,7 @@
     pkgs.hyprpaper
     pkgs.hyprshot
   ];
+  services.udisks2.enable = true;
 
   # Kill that xrdb error once and for all
   # We still enable the module so Nix knows how to handle the manual/docs
@@ -78,7 +79,8 @@
     shell = pkgs.zsh;
     hashedPassword = "$y$j9T$Yu6LVySFa46PsKBHC7lkI.$fCdSJMULL1L2uOMhiY1WlR5QzW84qP42ktl2CxvSkgC";
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["dialout" "networkmanager" "wheel" "libvirtd" "vboxusers" "disk" "kvm" "video" "render" "docker" "adbusers" "ydotool" "uinput"];
+
     packages = with pkgs; [
     ];
   };

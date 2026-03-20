@@ -9,5 +9,7 @@
     kitty
     xorg.xrdb
     orca-slicer
+    gnome-disk-utility
+    nautilus
   ];
 }

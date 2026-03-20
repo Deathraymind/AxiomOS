@@ -121,12 +121,22 @@ in {
           "Virtual-1, 1920x1080@60, 0x0, 1"
           "eDP-1, 1920x1080@60, 0x0, 1"
         ];
-
+        master = {
+          new_status = "master"; # New windows become the big master window
+          mfact = 0.80; # Give the master window 60% of the screen instead of 50%
+          special_scale_factor = 0.8;
+        };
+        windowrule = lib.mkForce [
+          "match:class ^(kitty)$, float on"
+          "match:class ^(kitty)$, size 800 600"
+          "match:class ^(kitty)$ , center 1"
+          "match:class ^(kitty)$, pin on"
+        ];
         general = {
           gaps_in = 4;
-          gaps_out = 8;
+          gaps_out = 4;
           border_size = 1;
-          layout = "dwindle";
+          layout = "master";
 
           "col.active_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base03}ff)";
           "col.inactive_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base01}ff)";
