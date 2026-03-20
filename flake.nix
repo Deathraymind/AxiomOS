@@ -53,9 +53,20 @@
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./hosts/laptop/configuration.nix
-        ./axiomosModules/programs/hyprland.nix
-        ./axiomosModules/programs/defaultPrograms.nix
+        ./hosts/desktop/configuration.nix
+        ./modules/system/default.nix
+        ./modules/programs/defaultPrograms.nix
+        inputs.home-manager.nixosModules.default
+        inputs.stylix.nixosModules.stylix
+        chaotic.nixosModules.default
+        {
+          home-manager = {
+            extraSpecialArgs = {inherit inputs;};
+            users.deathraymind.imports = [
+              ./hosts/desktop/home.nix
+            ];
+          };
+        }
       ];
     };
 
