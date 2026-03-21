@@ -1,6 +1,6 @@
 {
   description = "A very basic flake";
-
+  # this is ErbOS
   inputs = {
     # Official Plugins Flake - forced to follow your Hyprland version
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # for cachy kernal
