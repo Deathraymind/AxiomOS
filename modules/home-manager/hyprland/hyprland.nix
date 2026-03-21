@@ -40,6 +40,15 @@ in {
             "workspaces, 1, 3, default"
           ];
         };
+        windowrule = lib.mkForce [
+          "float, ^(kitty)$"
+          "size 800 600, ^(kitty)$"
+          "center, ^(kitty)$"
+          "pin, ^(kitty)$"
+          "float, ^(pavucontrol)$"
+          "size 700 500, ^(pavucontrol)$"
+          "center, ^(pavucontrol)$"
+        ];
 
         bind = [
           # Apps & Essentials
