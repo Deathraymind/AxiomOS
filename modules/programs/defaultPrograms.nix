@@ -11,5 +11,6 @@
     orca-slicer
     gnome-disk-utility
     nautilus
+    obs-studio
   ];
 }

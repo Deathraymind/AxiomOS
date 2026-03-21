@@ -40,15 +40,6 @@ in {
             "workspaces, 1, 3, default"
           ];
         };
-        windowrule = lib.mkForce [
-          "float, ^(kitty)$"
-          "size 800 600, ^(kitty)$"
-          "center, ^(kitty)$"
-          "pin, ^(kitty)$"
-          "float, ^(pavucontrol)$"
-          "size 700 500, ^(pavucontrol)$"
-          "center, ^(pavucontrol)$"
-        ];
 
         bind = [
           # Apps & Essentials
@@ -119,6 +110,15 @@ in {
           mfact = 0.80;
           special_scale_factor = 0.8;
         };
+        windowrule = lib.mkForce [
+          "match:class ^(kitty)$, float on"
+
+          "match:class ^(kitty)$, size 800 600"
+
+          "match:class ^(kitty)$ , center 1"
+
+          "match:class ^(kitty)$, pin on"
+        ];
         general = {
           gaps_in = 4;
           gaps_out = 4;
