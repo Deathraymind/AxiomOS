@@ -1,61 +1,30 @@
 {pkgs, ...}: let
-  # This creates the actual logic for the snipping tool
+  tesseract-ocr = pkgs.tesseract.override {};
+
   hypersnip = pkgs.writeShellScriptBin "hypersnip" ''
-    # 1. Capture the region
-    # We use a temp file to pass between grim, swappy, and tesseract
-    TEMP_IMG=$(mktemp /tmp/screenshot_XXXXXX.png)
+    # 1. Capture image
+    IMG="/tmp/snip.png"
+    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$IMG"
 
-    # Select region and capture
-    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$TEMP_IMG"
+    # 2. Check if file is empty (user hit ESC)
+    [ ! -s "$IMG" ] && exit 0
 
-    # If the user hits ESC or cancels, exit
-    [ ! -s "$TEMP_IMG" ] && rm "$TEMP_IMG" && exit
+    # 3. Open Swappy to edit
+    ${pkgs.swappy}/bin/swappy -f "$IMG" -o "$IMG"
 
-    # 2. Open Swappy for the "Super Nice" GUI experience
-    # -f: input file
-    # -o: output file (when user clicks 'Save')
-    ${pkgs.swappy}/bin/swappy -f "$TEMP_IMG" -o "$TEMP_IMG"
-
-    # 3. Handle OCR and Clipboard
-    # We check if the file still exists (Swappy might have deleted/moved it)
-    if [ -f "$TEMP_IMG" ]; then
-        # Copy the image itself to clipboard regardless
-        cat "$TEMP_IMG" | ${pkgs.wl-clipboard}/bin/wl-copy --type image/png
-
-        # Perform local OCR (No AI, purely local Tesseract)
-        # We redirect stderr to null to keep the console clean
-        TEXT=$(${pkgs.tesseract}/bin/tesseract "$TEMP_IMG" - 2>/dev/null)
-
-        if [ ! -z "$TEXT" ]; then
-            # If text is found, we can append it to the clipboard or
-            # send a notification so you know it's ready to be pasted.
-            echo "$TEXT" | ${pkgs.wl-clipboard}/bin/wl-copy --primary
-            ${pkgs.libnotify}/bin/notify-send "OCR Successful" "Text copied to primary selection (middle click)" -i edit-paste
-        fi
-
-        # Cleanup temp file
-        rm "$TEMP_IMG"
-    fi
+    # 4. Open Kitty, run Tesseract, and stay open
+    # --hold keeps the window open after Tesseract finishes
+    # -e tells Kitty what command to execute
+    ${pkgs.kitty}/bin/kitty --hold sh -c "${tesseract-ocr}/bin/tesseract $IMG stdout -l eng"
   '';
 in {
-  # Install the necessary dependencies
   environment.systemPackages = with pkgs; [
-    grim # Screen capture
-    slurp # Region selection
-    swappy # GUI Editor (Save/Copy buttons)
-    tesseract # OCR Engine
-    wl-clipboard # Clipboard management
-    libnotify # Notifications
-    hypersnip # Our custom script
+    grim
+    slurp
+    swappy
+    tesseract-ocr
+    kitty
+    hypersnip
+    wl-clipboard
   ];
-
-  # Optional: You can place your Hyprland bind here if you use
-  # programs.hyprland.extraConfig, or just put it in your hyprland.conf
-  /*
-  wayland.windowManager.hyprland.settings = {
-    bind = [
-      "SUPER, P, exec, hypersnip"
-    ];
-  };
-  */
 }

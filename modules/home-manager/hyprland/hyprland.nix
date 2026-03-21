@@ -5,17 +5,13 @@
   inputs,
   ...
 }: let
-  # This makes it easier to reference your own toggle
   cfg = config.axiomos.hyprland;
 in {
-  ### 1. Define the "Switch"
   options.axiomos.hyprland = {
     enable = lib.mkEnableOption "AxiomOS Hyprland Composite Config";
   };
 
-  ### 2. The Logic (Only applies if enable is true)
   config = lib.mkIf cfg.enable {
-    # We can automatically install helper apps when Hyprland is on
     home.packages = with pkgs; [
       kitty
       wl-color-picker
@@ -26,21 +22,16 @@ in {
     wayland.windowManager.hyprland = {
       package = lib.mkForce inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       enable = true;
-
       systemd.enable = false;
+
       settings = {
         animations = {
           enabled = true;
-          # 1. Define curves (Beziers)
-          # name, x0, y0, x1, y1
           bezier = [
             "myBezier, 0.05, 0.9, 0.1, 1.05"
             "overshot, 0.05, 0.9, 0.1, 1.1"
             "smooth, 0.87,0.39,1,0.81"
           ];
-
-          # 2. Assign animations
-          # name, enable, speed, curve, style
           animation = [
             "windows, 1, 3, smooth, slide top"
             "fade, 1, 3, default"
@@ -49,57 +40,49 @@ in {
             "workspaces, 1, 3, default"
           ];
         };
-        exec-once = [];
 
         bind = [
+          # Apps & Essentials
           "SUPER, A, exec, rofi -show drun"
-          "SUPER SHIFT, P, exec, hyprshot -m region"
+          "SUPER, P, exec, hypersnip"
           "SUPER, Q, killactive,"
           "SUPER, W, togglefloating,"
-          "SUPER, A, exec, rofi -show drun"
           "ALT, return, fullscreen,"
           "SUPER, T, exec, kitty"
           "SUPER, I, exec, wl-color-picker"
 
-          # Workspaces & Movement
+          # --- WORKSPACES (Stay on current monitor) ---
+          # Switch view to next/prev workspace on THIS monitor
           "SUPER CTRL, right, workspace, r+1"
-          "SUPER CTRL, left, workspace, r-1"
-          "SUPER CTRL, L, workspace, r+1"
-          "SUPER CTRL, H, workspace, r-1"
+          "SUPER CTRL, left,  workspace, r-1"
+          "SUPER CTRL, L,     workspace, r+1"
+          "SUPER CTRL, H,     workspace, r-1"
+
+          # Move window to next/prev workspace on THIS monitor
           "SUPER CTRL ALT, right, movetoworkspace, r+1"
-          "SUPER CTRL ALT, left, movetoworkspace, r-1"
-          "SUPER CTRL ALT, L, movetoworkspace, r+1"
-          "SUPER CTRL ALT, H, movetoworkspace, r-1"
-          "SUPER SHIFT CONTROL, left, movewindow, l"
+          "SUPER CTRL ALT, left,  movetoworkspace, r-1"
+          "SUPER CTRL ALT, L,     movetoworkspace, r+1"
+          "SUPER CTRL ALT, H,     movetoworkspace, r-1"
+
+          # --- WINDOW MOVEMENT (Inside the current workspace) ---
+          "SUPER SHIFT CONTROL, left,  movewindow, l"
           "SUPER SHIFT CONTROL, right, movewindow, r"
-          "SUPER SHIFT CONTROL, up, movewindow, u"
-          "SUPER SHIFT CONTROL, down, movewindow, d"
+          "SUPER SHIFT CONTROL, up,    movewindow, u"
+          "SUPER SHIFT CONTROL, down,  movewindow, d"
+          "SUPER SHIFT CONTROL, H,     movewindow, l"
+          "SUPER SHIFT CONTROL, L,     movewindow, r"
+          "SUPER SHIFT CONTROL, K,     movewindow, u"
+          "SUPER SHIFT CONTROL, J,     movewindow, d"
 
-          # Move window to relative workspace
-          "SUPER CTRL ALT, right, movetoworkspace, r+1"
-          "SUPER CTRL ALT, left, movetoworkspace, r-1"
-          "SUPER CTRL ALT, L, movetoworkspace, r+1"
-          "SUPER CTRL ALT, H, movetoworkspace, r-1"
-
-          # Move window in workspace
-          "SUPER SHIFT CONTROL, left, movewindow, l"
-          "SUPER SHIFT CONTROL, right, movewindow, r"
-          "SUPER SHIFT CONTROL, up, movewindow, u"
-          "SUPER SHIFT CONTROL, down, movewindow, d"
-          "SUPER SHIFT CONTROL, H, movewindow, l"
-          "SUPER SHIFT CONTROL, L, movewindow, r"
-          "SUPER SHIFT CONTROL, K, movewindow, u"
-          "SUPER SHIFT CONTROL, J, movewindow, d"
-
-          # Move focus
-          "SUPER, left, movefocus, l"
+          # --- FOCUS MOVEMENT ---
+          "SUPER, left,  movefocus, l"
           "SUPER, right, movefocus, r"
-          "SUPER, up, movefocus, u"
-          "SUPER, down, movefocus, d"
-          "SUPER, H, movefocus, l"
-          "SUPER, L, movefocus, r"
-          "SUPER, J, movefocus, u"
-          "SUPER, K, movefocus, d"
+          "SUPER, up,    movefocus, u"
+          "SUPER, down,  movefocus, d"
+          "SUPER, H,     movefocus, l"
+          "SUPER, L,     movefocus, r"
+          "SUPER, K,     movefocus, u" # Fixed: Was 'u' in your config
+          "SUPER, J,     movefocus, d" # Fixed: Was 'u' in your config
         ];
 
         bindm = [
@@ -121,29 +104,22 @@ in {
           "Virtual-1, 1920x1080@60, 0x0, 1"
           "eDP-1, 1920x1080@60, 0x0, 1"
         ];
+
         master = {
-          new_status = "master"; # New windows become the big master window
-          mfact = 0.80; # Give the master window 60% of the screen instead of 50%
+          new_status = "master";
+          mfact = 0.80;
           special_scale_factor = 0.8;
         };
-        windowrule = lib.mkForce [
-          "match:class ^(kitty)$, float on"
-          "match:class ^(kitty)$, size 800 600"
-          "match:class ^(kitty)$ , center 1"
-          "match:class ^(kitty)$, pin on"
-        ];
         general = {
           gaps_in = 4;
           gaps_out = 4;
           border_size = 1;
           layout = "master";
-
           "col.active_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base03}ff)";
           "col.inactive_border" = lib.mkForce "rgba(${config.stylix.base16Scheme.base01}ff)";
-
           resize_on_border = true;
-          extend_border_grab_area = 20; # This gives you 20px of "leeway" to grab
-          hover_icon_on_border = true; # Changes cursor to resize arrows
+          extend_border_grab_area = 20;
+          hover_icon_on_border = true;
         };
 
         decoration = {
