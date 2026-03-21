@@ -53,7 +53,7 @@
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./hosts/desktop/configuration.nix
+        ./hosts/laptop/configuration.nix
         ./modules/system/default.nix
         ./modules/programs/defaultPrograms.nix
         inputs.home-manager.nixosModules.default
@@ -63,7 +63,7 @@
           home-manager = {
             extraSpecialArgs = {inherit inputs;};
             users.deathraymind.imports = [
-              ./hosts/desktop/home.nix
+              ./hosts/laptop/home.nix
             ];
           };
         }
